@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* MEXC-Inspired Trading Platform Design System */
+@layer base {
+  :root {
+    /* Core Brand Colors - Electric Blue & Deep Black Theme */
+    --background: 222 100% 4%; /* Deep black #0A0A0F */
+    --foreground: 210 20% 98%; /* Light text */
+
+    --card: 223 47% 8%; /* Dark card background #0F1419 */
+    --card-foreground: 210 20% 98%;
+
+    --popover: 223 47% 8%;
+    --popover-foreground: 210 20% 98%;
+
+    /* Electric Blue Primary */
+    --primary: 220 100% 50%; /* Electric blue #0066FF */
+    --primary-foreground: 210 20% 98%;
+    --primary-glow: 220 100% 60%; /* Lighter blue for glows */
+
+    /* Dark UI Elements */
+    --secondary: 222 47% 11%; /* Darker secondary #1A1A1F */
+    --secondary-foreground: 210 20% 85%;
+
+    --muted: 215 28% 17%; /* Muted elements #222831 */
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 195 100% 50%; /* Cyan accent #00BFFF */
+    --accent-foreground: 210 20% 98%;
+
+    /* Status Colors */
+    --success: 142 69% 58%; /* Green for profits */
+    --success-foreground: 210 20% 98%;
+    
+    --destructive: 0 84% 60%; /* Red for losses */
+    --destructive-foreground: 210 20% 98%;
+
+    --warning: 48 96% 53%; /* Yellow for warnings */
+    --warning-foreground: 222 84% 5%;
+
+    /* Borders & Inputs */
+    --border: 215 28% 17%;
+    --input: 215 28% 17%;
+    --ring: 220 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(220 100% 50%), hsl(195 100% 50%));
+    --gradient-secondary: linear-gradient(135deg, hsl(222 47% 8%), hsl(215 28% 17%));
+    --gradient-success: linear-gradient(135deg, hsl(142 69% 58%), hsl(120 100% 25%));
+    --gradient-danger: linear-gradient(135deg, hsl(0 84% 60%), hsl(0 100% 40%));
+
+    /* Shadows & Glows */
+    --shadow-primary: 0 0 40px hsl(220 100% 50% / 0.3);
+    --shadow-card: 0 8px 32px hsl(222 100% 4% / 0.8);
+    --shadow-glow: 0 0 20px hsl(220 100% 60% / 0.4);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Sidebar */
+    --sidebar-background: 222 47% 8%;
+    --sidebar-foreground: 210 20% 85%;
+    --sidebar-primary: 220 100% 50%;
+    --sidebar-primary-foreground: 210 20% 98%;
+    --sidebar-accent: 215 28% 17%;
+    --sidebar-accent-foreground: 210 20% 85%;
+    --sidebar-border: 215 28% 17%;
+    --sidebar-ring: 220 100% 50%;
+  }
+}
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+  }
+
+  /* Custom scrollbar for trading interface */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 3px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary-glow));
+  }
+}
+
+@layer components {
+  /* Trading Platform Specific Components */
+  .trading-card {
+    @apply bg-card border border-border rounded-lg p-6 shadow-[var(--shadow-card)] transition-[var(--transition-smooth)];
+  }
+
+  .trading-card:hover {
+    @apply shadow-[var(--shadow-glow)] transform scale-[1.02];
+  }
+
+  .profit-text {
+    @apply text-success font-semibold;
+  }
+
+  .loss-text {
+    @apply text-destructive font-semibold;
+  }
+
+  .price-up {
+    @apply text-success bg-success/10 px-2 py-1 rounded;
+  }
+
+  .price-down {
+    @apply text-destructive bg-destructive/10 px-2 py-1 rounded;
+  }
+
+  .glow-button {
+    @apply bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-primary)] transform hover:scale-105 transition-[var(--transition-smooth)];
+  }
+
+  .glass-panel {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-lg;
+  }
+}
+
+@layer utilities {
+  .font-inter {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+
+  .gradient-success {
+    background: var(--gradient-success);
+  }
+
+  .gradient-danger {
+    background: var(--gradient-danger);
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.3s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.6), 0 0 40px hsl(var(--accent) / 0.3);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

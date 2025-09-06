@@ -1,0 +1,19 @@
+-- Enable realtime for all tables
+ALTER TABLE public.balances REPLICA IDENTITY FULL;
+ALTER TABLE public.crypto_prices REPLICA IDENTITY FULL;
+ALTER TABLE public.deposits REPLICA IDENTITY FULL;
+ALTER TABLE public.notifications REPLICA IDENTITY FULL;
+ALTER TABLE public.profiles REPLICA IDENTITY FULL;
+ALTER TABLE public.trades REPLICA IDENTITY FULL;
+ALTER TABLE public.wallets REPLICA IDENTITY FULL;
+ALTER TABLE public.withdrawals REPLICA IDENTITY FULL;
+
+-- Add tables to realtime publication
+ALTER PUBLICATION supabase_realtime ADD TABLE public.balances;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.crypto_prices;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.deposits;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.notifications;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.profiles;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.trades;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.wallets;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.withdrawals;
